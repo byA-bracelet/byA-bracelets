@@ -1,0 +1,244 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Georgia', serif;
+}
+
+body {
+  background-color: #fff9f5;
+  color: #333;
+}
+
+/* ── HEADER ── */
+header {
+  background-color: #f0d9c8;
+  padding: 18px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.logo {
+  font-size: 1.5rem;
+  color: #7a4f3a;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav a {
+  margin-left: 25px;
+  text-decoration: none;
+  color: #7a4f3a;
+  font-size: 1rem;
+}
+nav a:hover { text-decoration: underline; }
+
+.icone-panier {
+  background-color: #c8845a;
+  color: white !important;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.95rem;
+}
+
+/* ── HERO ── */
+.hero {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: linear-gradient(135deg, #fff9f5 0%, #fce4d6 100%);
+  padding: 40px 20px;
+}
+
+.hero h2 {
+  font-size: 3rem;
+  color: #7a4f3a;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  font-size: 1.3rem;
+  color: #888;
+  margin-bottom: 35px;
+}
+
+.bouton {
+  background-color: #c8845a;
+  color: white;
+  padding: 16px 36px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-size: 1.1rem;
+  display: inline-block;
+  transition: background 0.3s;
+}
+.bouton:hover { background-color: #a0603c; }
+
+/* ── AVANTAGES ── */
+.avantages {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  padding: 60px 40px;
+  flex-wrap: wrap;
+  background: white;
+}
+
+.avantage {
+  text-align: center;
+  max-width: 220px;
+}
+.avantage span { font-size: 2.5rem; }
+.avantage h3 { color: #7a4f3a; margin: 12px 0 8px; }
+.avantage p { color: #888; font-size: 0.95rem; }
+
+/* ── BOUTIQUE ── */
+.boutique {
+  padding: 60px 40px;
+  text-align: center;
+}
+.boutique h2 {
+  font-size: 2.2rem;
+  color: #7a4f3a;
+  margin-bottom: 40px;
+}
+
+.produits {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+}
+
+.carte {
+  background: white;
+  border-radius: 18px;
+  padding: 20px;
+  width: 260px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  transition: transform 0.25s;
+  text-align: left;
+}
+.carte:hover { transform: translateY(-6px); }
+
+.carte img {
+  width: 100%;
+  height: 210px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 15px;
+}
+.carte h3 { color: #7a4f3a; margin-bottom: 8px; }
+.carte p { color: #888; font-size: 0.9rem; margin-bottom: 8px; }
+.prix {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #c8845a;
+  margin-bottom: 15px !important;
+}
+
+.carte button {
+  width: 100%;
+  padding: 12px;
+  background-color: #c8845a;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.carte button:hover { background-color: #a0603c; }
+
+/* ── PANIER PAGE ── */
+.panier-page {
+  max-width: 700px;
+  margin: 60px auto;
+  padding: 0 20px;
+}
+.panier-page h2 {
+  font-size: 2rem;
+  color: #7a4f3a;
+  margin-bottom: 30px;
+}
+
+.ligne-panier {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: white;
+  padding: 16px 20px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+}
+.nom-produit { flex: 1; font-size: 1rem; color: #333; }
+.qte { margin: 0 20px; color: #888; }
+.sous-total { font-weight: bold; color: #c8845a; margin-right: 20px; }
+
+.supprimer {
+  background: none;
+  border: none;
+  color: #aaa;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+.supprimer:hover { color: #e05c5c; }
+
+#resume-panier {
+  text-align: right;
+  margin-top: 30px;
+}
+#resume-panier p {
+  font-size: 1.3rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+#bouton-payer {
+  background-color: #c8845a;
+  color: white;
+  border: none;
+  padding: 16px 40px;
+  border-radius: 30px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+#bouton-payer:hover { background-color: #a0603c; }
+#bouton-payer:disabled { background-color: #ccc; cursor: not-allowed; }
+
+/* ── CONTACT ── */
+.contact {
+  max-width: 600px;
+  margin: 80px auto;
+  text-align: center;
+  padding: 0 20px;
+}
+.contact h2 { font-size: 2rem; color: #7a4f3a; margin-bottom: 20px; }
+.contact p { margin-bottom: 12px; font-size: 1.05rem; }
+.contact a { color: #c8845a; }
+
+/* ── FOOTER ── */
+footer {
+  text-align: center;
+  padding: 24px;
+  background-color: #f0d9c8;
+  color: #7a4f3a;
+  margin-top: 60px;
+}
+
+/* ── RESPONSIVE MOBILE ── */
+@media (max-width: 600px) {
+  header { padding: 15px 20px; }
+  .hero h2 { font-size: 2rem; }
+  .avantages { flex-direction: column; align-items: center; }
+  .boutique { padding: 40px 20px; }
+}
