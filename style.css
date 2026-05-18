@@ -314,3 +314,55 @@ footer {
     height: 300px;
   }
 }
+/* ── CATEGORIES ACCUEIL ── */
+.categories-accueil {
+  padding: 60px 40px;
+  text-align: center;
+  background-color: #fff0f5;
+}
+
+.categories-accueil h2 {
+  font-size: 2rem;
+  color: #ff4d8d;
+  margin-bottom: 40px;
+}
+
+.categories-grille {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+}
+
+.categorie-carte {
+  text-decoration: none;
+  width: 220px;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(255,77,141,0.15);
+  transition: transform 0.25s;
+  background: white;
+}
+
+.categorie-carte:hover { transform: translateY(-6px); }
+
+.categorie-carte img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+.categorie-nom {
+  padding: 15px;
+  font-size: 1.2rem;
+  color: #ff4d8d;
+  font-weight: bold;
+  background: white;
+}
+
+@media (max-width: 600px) {
+  .categories-accueil { padding: 40px 20px; }
+  .categorie-carte { width: 150px; }
+  .categorie-carte img { height: 150px; }
+}
