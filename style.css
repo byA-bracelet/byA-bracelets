@@ -1,254 +1,77 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Georgia', serif;
-}
-
-body {
-  background-color: #fff0f5;
-  color: #333;
-}
-
-/* ── HEADER ── */
-header {
-  background-color: #ff4d8d;
-  padding: 12px 40px;
+/* ── PAGE PRODUIT ── */
+.page-produit {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 40px;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  gap: 60px;
+  max-width: 900px;
+  margin: 60px auto;
+  padding: 0 20px;
+  align-items: flex-start;
 }
 
-.logo img {
-  height: 60px;
-  width: 60px;
+.produit-image img {
+  width: 380px;
+  height: 380px;
   object-fit: cover;
-  border-radius: 50%;
-  border: 2px solid #ffa500;
-}
-
-nav a {
-  margin-left: 25px;
-  text-decoration: none;
-  color: white;
-  font-size: 1rem;
-}
-nav a:hover { text-decoration: underline; }
-
-.icone-panier {
-  background-color: #ffa500;
-  color: white !important;
-  padding: 8px 16px;
   border-radius: 20px;
-  font-size: 0.95rem;
+  box-shadow: 0 4px 20px rgba(255,77,141,0.2);
 }
 
-/* ── HERO ── */
-.hero {
-  width: 100%;
-}
-
-.banniere {
-  width: 100%;
-  max-height: 400px;
-  object-fit: cover;
-  display: block;
-}
-
-/* ── BOUTON ── */
-.bouton-centre {
-  text-align: center;
-  padding: 40px 20px;
-  background-color: #fff0f5;
-}
-
-.bouton {
-  background-color: #ff4d8d;
-  color: white;
-  padding: 16px 36px;
-  border-radius: 30px;
-  text-decoration: none;
-  font-size: 1.1rem;
-  display: inline-block;
-  transition: background 0.3s;
-}
-.bouton:hover { background-color: #ffa500; }
-
-/* ── AVANTAGES ── */
-.avantages {
+.produit-info {
   display: flex;
-  justify-content: center;
-  gap: 40px;
-  padding: 50px 40px;
-  flex-wrap: wrap;
-  background: white;
+  flex-direction: column;
+  gap: 20px;
 }
 
-.avantage {
-  text-align: center;
-  max-width: 220px;
-}
-.avantage span { font-size: 2.5rem; }
-.avantage h3 { color: #ff4d8d; margin: 12px 0 8px; }
-.avantage p { color: #888; font-size: 0.95rem; }
-
-/* ── BOUTIQUE ── */
-.boutique {
-  padding: 60px 40px;
-  text-align: center;
-}
-.boutique h2 {
-  font-size: 2.2rem;
+.produit-info h2 {
+  font-size: 2rem;
   color: #ff4d8d;
-  margin-bottom: 40px;
 }
 
-.produits {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 30px;
-  justify-content: center;
-}
-
-.carte {
-  background: white;
-  border-radius: 18px;
-  padding: 20px;
-  width: 260px;
-  box-shadow: 0 4px 20px rgba(255,77,141,0.15);
-  transition: transform 0.25s;
-  text-align: left;
-}
-.carte:hover { transform: translateY(-6px); }
-
-.carte img {
-  width: 100%;
-  height: 210px;
-  object-fit: cover;
-  border-radius: 12px;
-  margin-bottom: 15px;
-}
-.carte h3 { color: #ff4d8d; margin-bottom: 8px; }
-.carte p { color: #888; font-size: 0.9rem; margin-bottom: 8px; }
-.prix {
-  font-size: 1.25rem;
+.produit-prix {
+  font-size: 1.8rem;
   font-weight: bold;
   color: #ffa500;
-  margin-bottom: 15px !important;
 }
 
-.carte button {
-  width: 100%;
-  padding: 12px;
+.stock {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.produit-info button {
+  padding: 14px 30px;
   background-color: #ff4d8d;
   color: white;
   border: none;
   border-radius: 25px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-.carte button:hover { background-color: #ffa500; }
-
-/* ── PANIER PAGE ── */
-.panier-page {
-  max-width: 700px;
-  margin: 60px auto;
-  padding: 0 20px;
-}
-.panier-page h2 {
-  font-size: 2rem;
-  color: #ff4d8d;
-  margin-bottom: 30px;
-}
-
-.ligne-panier {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: white;
-  padding: 16px 20px;
-  border-radius: 12px;
-  margin-bottom: 12px;
-  box-shadow: 0 2px 10px rgba(255,77,141,0.1);
-}
-.nom-produit { flex: 1; font-size: 1rem; color: #333; }
-.qte { margin: 0 20px; color: #888; }
-.sous-total { font-weight: bold; color: #ffa500; margin-right: 20px; }
-
-.supprimer {
-  background: none;
-  border: none;
-  color: #aaa;
-  font-size: 1.1rem;
-  cursor: pointer;
-}
-.supprimer:hover { color: #e05c5c; }
-
-#resume-panier {
-  text-align: right;
-  margin-top: 30px;
-}
-#resume-panier p {
-  font-size: 1.3rem;
-  margin-bottom: 20px;
-  color: #333;
-}
-
-#bouton-payer {
-  background-color: #ff4d8d;
-  color: white;
-  border: none;
-  padding: 16px 40px;
-  border-radius: 30px;
   font-size: 1.1rem;
   cursor: pointer;
   transition: background 0.3s;
-}
-#bouton-payer:hover { background-color: #ffa500; }
-#bouton-payer:disabled { background-color: #ccc; cursor: not-allowed; }
-
-/* ── CONTACT ── */
-.contact {
-  max-width: 600px;
-  margin: 80px auto;
-  text-align: center;
-  padding: 0 20px;
-}
-.contact h2 { font-size: 2rem; color: #ff4d8d; margin-bottom: 20px; }
-.contact p { margin-bottom: 12px; font-size: 1.05rem; }
-.contact a { color: #ffa500; }
-
-/* ── FOOTER ── */
-footer {
-  text-align: center;
-  padding: 24px;
-  background-color: #ff4d8d;
-  color: white;
-  margin-top: 60px;
-}
-
-/* ── RESPONSIVE MOBILE ── */
-@media (max-width: 600px) {
-  header { padding: 12px 20px; }
-  .avantages { flex-direction: column; align-items: center; }
-  .boutique { padding: 40px 20px; }
-  .banniere { max-height: 200px; }
-}
-/* ── CATEGORIES ── */
-.categorie {
-  font-size: 1.8rem;
-  color: #ff4d8d;
-  margin: 50px 0 20px;
-  text-align: center;
-  border-bottom: 2px solid #ffa500;
-  padding-bottom: 10px;
   width: fit-content;
-  margin-left: auto;
-  margin-right: auto;
+}
+
+.produit-info button:hover { background-color: #ffa500; }
+
+.retour {
+  color: #ff4d8d;
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+.retour:hover { text-decoration: underline; }
+
+/* Carte cliquable */
+.carte {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+@media (max-width: 600px) {
+  .page-produit {
+    flex-direction: column;
+  }
+  .produit-image img {
+    width: 100%;
+    height: 300px;
+  }
 }
