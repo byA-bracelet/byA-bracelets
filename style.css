@@ -146,30 +146,15 @@ nav a:hover { text-decoration: underline; }
   margin-bottom: 15px !important;
 }
 
-.carte button {
-  width: 100%;
-  padding: 12px;
-  background-color: #ff4d8d;
-  color: white;
-  border: none;
-  border-radius: 25px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-.carte button:hover { background-color: #ffa500; }
-
 /* ── CATEGORIES ── */
 .categorie {
   font-size: 1.8rem;
   color: #ff4d8d;
-  margin: 50px 0 20px;
+  margin: 50px auto 20px;
   text-align: center;
   border-bottom: 2px solid #ffa500;
   padding-bottom: 10px;
   width: fit-content;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 /* ── PANIER PAGE ── */
@@ -261,6 +246,10 @@ footer {
   align-items: flex-start;
 }
 
+.produit-image {
+  flex-shrink: 0;
+}
+
 .produit-image img {
   width: 280px;
   height: 280px;
@@ -302,7 +291,6 @@ footer {
   transition: background 0.3s;
   width: fit-content;
 }
-
 .produit-info button:hover { background-color: #ffa500; }
 
 .retour {
