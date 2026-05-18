@@ -9,8 +9,8 @@
 }
 
 .produit-image img {
-  width: 380px;
-  height: 380px;
+  width: 280px;
+  height: 280px;
   object-fit: cover;
   border-radius: 20px;
   box-shadow: 0 4px 20px rgba(255,77,141,0.2);
@@ -60,11 +60,20 @@
 .retour:hover { text-decoration: underline; }
 
 /* Carte cliquable */
-.carte {
+a.carte {
   text-decoration: none;
   color: inherit;
   display: block;
+  background: white;
+  border-radius: 18px;
+  padding: 20px;
+  width: 260px;
+  box-shadow: 0 4px 20px rgba(255,77,141,0.15);
+  transition: transform 0.25s;
+  text-align: left;
 }
+a.carte:hover { transform: translateY(-6px); }
+a.carte:visited { color: inherit; }
 
 @media (max-width: 600px) {
   .page-produit {
