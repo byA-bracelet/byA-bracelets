@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Produit — Bracelets By.A</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <a href="index.html" class="logo">
+      <img src="images/logo.png" alt="Bracelets By.A" />
+    </a>
+    <nav>
+      <a href="boutique.html">Boutique</a>
+      <a href="contact.html">Contact</a>
+      <a href="panier.html" class="icone-panier">
+        🛒 <span id="compteur-panier">0</span>
+      </a>
+    </nav>
+  </header>
+
+  <section class="page-produit">
+    <div class="produit-image">
+      <img id="produit-photo" src="" alt="" />
+    </div>
+    <div class="produit-info">
+      <h2 id="produit-nom"></h2>
+      <p id="produit-stock" class="stock"></p>
+      <p class="produit-prix" id="produit-prix"></p>
+      <button id="produit-bouton" onclick="ajouterDepuisPage()">
+        Ajouter au panier
+      </button>
+      <a href="boutique.html" class="retour">← Retour à la boutique</a>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Bracelets By.A — Fait avec ❤️ en Belgique</p>
+  </footer>
+
+  <script src="panier.js"></script>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const nom = params.get('nom');
+    const prix = parseFloat(params.get('prix'));
+    const photo = params.get('photo');
+    const stock = parseInt(params.get('stock'));
+
+    document.getElementById('produit-nom').textContent = nom;
+    document.getElementById('produit-prix').textContent = prix.toFixed(2) + ' €';
+    document.getElementById('produit-photo').src = 'images/' + photo;
+    document.getElementById('produit-photo').alt = nom;
+    document.title = nom + ' — Bracelets By.A';
+
+    const stockEl = document.getElementById('produit-stock');
+    const bouton = document.getElementById('produit-bouton');
+    if (stock === 0) {
+      stockEl.textContent = '❌ Rupture de stock';
+      stockEl.style.color = 'red';
+      bouton.disabled = true;
+      bouton.style.backgroundColor = '#ccc';
+      bouton.style.cursor = 'not-allowed';
+    } else if (stock <= 3) {
+      stockEl.textContent = '⚠️ Plus que ' + stock + ' en stock !';
+      stockEl.style.color = '#ffa500';
+    } else {
+      stockEl.textContent = '✅ En stock';
+      stockEl.style.color = 'green';
+    }
+
+    function ajouterDepuisPage() {
+      ajouterAuPanier(nom, prix);
+    }
+  </script>
+
+</body>
+</html>
