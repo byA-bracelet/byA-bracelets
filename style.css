@@ -126,6 +126,7 @@ nav a:hover { text-decoration: underline; }
   text-decoration: none;
   color: inherit;
   display: block;
+  box-sizing: border-box;
 }
 .carte:hover { transform: translateY(-6px); }
 .carte:visited { color: inherit; }
