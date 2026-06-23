@@ -305,8 +305,18 @@ footer {
 @media (max-width: 600px) {
   header { padding: 12px 20px; }
   .avantages { flex-direction: column; align-items: center; }
-  .boutique { padding: 40px 20px; }
+  .boutique { padding: 40px 15px; }
   .banniere { max-height: 200px; }
+  .produits {
+    gap: 15px;
+  }
+  .carte {
+    width: calc(50% - 8px);
+    padding: 12px;
+  }
+  .carte img {
+    height: 150px;
+  }
   .page-produit {
     flex-direction: column;
   }
