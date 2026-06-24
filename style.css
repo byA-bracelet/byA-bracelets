@@ -377,3 +377,6 @@ footer {
   .categorie-carte { width: 150px; }
   .categorie-carte img { height: 150px; }
 }
+.carte .prix {
+  color: #ffa500 !important;
+}
