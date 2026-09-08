@@ -89,3 +89,18 @@ async function passerCommande() {
 // Lance tout au chargement de la page
 mettreAJourCompteur();
 afficherPanier();
+
+// Ajoute automatiquement le badge "Épuisé" sur les cartes en rupture de stock
+document.querySelectorAll('.carte').forEach(carte => {
+  const href = carte.getAttribute('href');
+  if (href) {
+    const params = new URLSearchParams(href.split('?')[1]);
+    const stock = parseInt(params.get('stock'));
+    if (stock === 0) {
+      const badge = document.createElement('span');
+      badge.className = 'badge-epuise';
+      badge.textContent = 'Épuisé';
+      carte.insertBefore(badge, carte.firstChild);
+    }
+  }
+});

@@ -413,3 +413,20 @@ footer {
 .carte .prix {
   color: #ffa500 !important;
 }
+/* ── BADGE ÉPUISÉ ── */
+.carte {
+  position: relative;
+}
+
+.badge-epuise {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: #e05c5c;
+  color: white;
+  font-size: 0.75rem;
+  font-weight: bold;
+  padding: 4px 10px;
+  border-radius: 6px;
+  z-index: 10;
+}
