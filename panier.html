@@ -11,8 +11,8 @@
 
   <header>
     <a href="index.html" class="logo">
-  <img src="images/logo.png" alt="Bracelets By.A" />
-</a>
+      <img src="images/logo.png" alt="Bracelets By.A" />
+    </a>
     <nav>
       <a href="boutique.html">Boutique</a>
       <a href="contact.html">Contact</a>
@@ -25,6 +25,10 @@
   <section class="panier-page">
     <h2>Mon panier</h2>
 
+    <div id="message-merci" class="message-merci" style="display:none;">
+      🎉 Merci pour ta commande ! Tu vas recevoir un email de confirmation.
+    </div>
+
     <div id="liste-panier">
       <!-- Rempli automatiquement par panier.js -->
     </div>
@@ -35,7 +39,18 @@
     </div>
 
     <div id="resume-panier">
-      <p>Total : <strong id="total-panier">0,00 €</strong></p>
+      <div class="zone-livraison">
+        <label for="zone-livraison">Où dois-je livrer ta commande ?</label>
+        <select id="zone-livraison">
+          <option value="">— Choisis ta zone —</option>
+          <option value="bruxelles">Bruxelles — 1,50 €</option>
+          <option value="belgique">Belgique — 3,80 €</option>
+          <option value="europe">France, Pays-Bas, Luxembourg — 4,60 €</option>
+        </select>
+        <small>Les frais de livraison sont ajoutés sur la page de paiement.</small>
+      </div>
+
+      <p>Total articles : <strong id="total-panier">0,00 €</strong></p>
       <button id="bouton-payer" onclick="passerCommande()">
         Payer maintenant
       </button>

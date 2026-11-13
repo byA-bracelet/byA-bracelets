@@ -28,9 +28,9 @@
     </div>
     <div class="produit-info">
       <h2 id="produit-nom"></h2>
-      <p id="produit-stock" class="stock"></p>
+      <p id="produit-stock" class="stock">Chargement du stock…</p>
       <p class="produit-prix" id="produit-prix"></p>
-      <button id="produit-bouton" onclick="ajouterDepuisPage()">
+      <button id="produit-bouton" onclick="ajouterDepuisPage()" disabled>
         Ajouter au panier
       </button>
       <a href="boutique.html" class="retour">← Retour à la boutique</a>
@@ -45,9 +45,12 @@
   <script>
     const params = new URLSearchParams(window.location.search);
     const nom = params.get('nom');
-    const prix = parseFloat(params.get('prix'));
     const photo = params.get('photo');
-    const stock = parseInt(params.get('stock'));
+    let prix = parseFloat(params.get('prix'));
+    let stockServeur = 0;
+
+    const stockEl = document.getElementById('produit-stock');
+    const bouton = document.getElementById('produit-bouton');
 
     document.getElementById('produit-nom').textContent = nom;
     document.getElementById('produit-prix').textContent = prix.toFixed(2) + ' €';
@@ -55,25 +58,59 @@
     document.getElementById('produit-photo').alt = nom;
     document.title = nom + ' — Bracelets By.A';
 
-    const stockEl = document.getElementById('produit-stock');
-    const bouton = document.getElementById('produit-bouton');
-    if (stock === 0) {
-      stockEl.textContent = '❌ Rupture de stock';
-      stockEl.style.color = 'red';
+    function griser() {
       bouton.disabled = true;
       bouton.style.backgroundColor = '#ccc';
       bouton.style.cursor = 'not-allowed';
-    } else if (stock <= 3) {
-      stockEl.textContent = '⚠️ Plus que ' + stock + ' en stock !';
-      stockEl.style.color = '#ffa500';
-    } else {
-      stockEl.textContent = '✅ En stock';
-      stockEl.style.color = 'green';
+    }
+
+    async function chargerStock() {
+      try {
+        const reponse = await fetch(API + '/produits');
+        const produits = await reponse.json();
+        const produit = produits.find(p => p.nom === nom);
+
+        if (!produit) {
+          stockEl.textContent = 'Produit indisponible';
+          stockEl.style.color = 'red';
+          griser();
+          return;
+        }
+
+        prix = Number(produit.prix);
+        stockServeur = produit.stock;
+        document.getElementById('produit-prix').textContent = prix.toFixed(2) + ' €';
+
+        if (stockServeur === 0) {
+          stockEl.textContent = '❌ Rupture de stock';
+          stockEl.style.color = 'red';
+          griser();
+        } else if (stockServeur <= 3) {
+          stockEl.textContent = '⚠️ Plus que ' + stockServeur + ' en stock !';
+          stockEl.style.color = '#ffa500';
+          bouton.disabled = false;
+        } else {
+          stockEl.textContent = '✅ En stock';
+          stockEl.style.color = 'green';
+          bouton.disabled = false;
+        }
+      } catch (erreur) {
+        stockEl.textContent = 'Stock indisponible, réessaie dans un instant.';
+        stockEl.style.color = 'red';
+        griser();
+      }
     }
 
     function ajouterDepuisPage() {
+      const dejaDansPanier = (panier.find(item => item.nom === nom) || { quantite: 0 }).quantite;
+      if (dejaDansPanier + 1 > stockServeur) {
+        alert('Tu as déjà tout le stock disponible de ce bracelet dans ton panier.');
+        return;
+      }
       ajouterAuPanier(nom, prix);
     }
+
+    chargerStock();
   </script>
 
 </body>
