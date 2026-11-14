@@ -150,3 +150,8 @@ gererRetourPaiement();
 mettreAJourCompteur();
 afficherPanier();
 afficherBadgesEpuise();
+
+// Ouvre / ferme le menu
+function basculerMenu() {
+  document.getElementById('menu-liens').classList.toggle('ouvert');
+}
