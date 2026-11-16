@@ -31,7 +31,7 @@ header {
 }
 
 .logo img {
-  height: 100px;
+  height: 130px;
   width: auto;
   object-fit: contain;
   display: block;
@@ -463,7 +463,7 @@ footer {
 /* ── RESPONSIVE MOBILE ── */
 @media (max-width: 600px) {
   header { padding: 8px 15px; }
-  .logo img { height: 85px; }
+  .logo img { height: 100px; }
   .avantages { flex-direction: column; align-items: center; }
   .boutique { padding: 40px 15px; }
   .produits {
