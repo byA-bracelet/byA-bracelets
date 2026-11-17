@@ -1,6 +1,7 @@
 const API = 'https://bya-serveur.onrender.com';
 
 let panier = JSON.parse(localStorage.getItem('panier')) || [];
+let stocks = {};
 
 function sauvegarder() {
   localStorage.setItem('panier', JSON.stringify(panier));
@@ -33,6 +34,29 @@ function supprimerDuPanier(nom) {
   afficherPanier();
 }
 
+// Ajoute (+1) ou enlève (-1) un exemplaire depuis le panier
+function changerQuantite(nom, delta) {
+  const item = panier.find(i => i.nom === nom);
+  if (!item) return;
+
+  const nouvelle = item.quantite + delta;
+
+  if (nouvelle < 1) {
+    supprimerDuPanier(nom);
+    return;
+  }
+
+  if (delta > 0 && stocks[nom] !== undefined && nouvelle > stocks[nom]) {
+    alert(`Il ne reste que ${stocks[nom]} exemplaire(s) de "${nom}".`);
+    return;
+  }
+
+  item.quantite = nouvelle;
+  sauvegarder();
+  mettreAJourCompteur();
+  afficherPanier();
+}
+
 // Affiche le contenu du panier sur panier.html
 function afficherPanier() {
   const liste = document.getElementById('liste-panier');
@@ -52,17 +76,37 @@ function afficherPanier() {
   vide.style.display = 'none';
   resume.style.display = 'block';
 
-  liste.innerHTML = panier.map(item => `
+  liste.innerHTML = panier.map(item => {
+    const stockMax = stocks[item.nom];
+    const plusBloque = stockMax !== undefined && item.quantite >= stockMax;
+    return `
     <div class="ligne-panier">
       <span class="nom-produit">${item.nom}</span>
-      <span class="qte">x${item.quantite}</span>
+      <div class="quantite-controle">
+        <button class="btn-qte" onclick="changerQuantite('${item.nom}', -1)" aria-label="Enlever un">−</button>
+        <span class="qte-nombre">${item.quantite}</span>
+        <button class="btn-qte" onclick="changerQuantite('${item.nom}', 1)" aria-label="Ajouter un" ${plusBloque ? 'disabled' : ''}>+</button>
+      </div>
       <span class="sous-total">${(item.prix * item.quantite).toFixed(2)} €</span>
       <button class="supprimer" onclick="supprimerDuPanier('${item.nom}')">✕</button>
-    </div>
-  `).join('');
+    </div>`;
+  }).join('');
 
   const total = panier.reduce((acc, item) => acc + item.prix * item.quantite, 0);
   totalEl.textContent = total.toFixed(2) + ' €';
+}
+
+// Charge le stock en direct (pour bloquer le + quand il n'y en a plus)
+async function chargerStocks() {
+  if (!document.getElementById('liste-panier')) return;
+  try {
+    const reponse = await fetch(API + '/produits');
+    const produits = await reponse.json();
+    produits.forEach(p => { stocks[p.nom] = p.stock; });
+    afficherPanier();
+  } catch (erreur) {
+    console.error('Impossible de charger le stock :', erreur);
+  }
 }
 
 // Envoie le panier + la zone de livraison au serveur
@@ -146,12 +190,13 @@ function gererRetourPaiement() {
   }
 }
 
-gererRetourPaiement();
-mettreAJourCompteur();
-afficherPanier();
-afficherBadgesEpuise();
-
-// Ouvre / ferme le menu
+// Ouvre / ferme le menu ☰
 function basculerMenu() {
   document.getElementById('menu-liens').classList.toggle('ouvert');
 }
+
+gererRetourPaiement();
+mettreAJourCompteur();
+afficherPanier();
+chargerStocks();
+afficherBadgesEpuise();
