@@ -542,9 +542,30 @@ footer {
 
 @media (max-width: 600px) {
   .ligne-panier {
-    flex-wrap: wrap;
-    gap: 8px;
+    flex-wrap: nowrap;
+    gap: 6px;
+    padding: 12px 10px;
   }
-  .nom-produit { flex-basis: 100%; }
-  .quantite-controle { margin: 0; }
+  .nom-produit {
+    flex: 1;
+    min-width: 0;
+    font-size: 0.9rem;
+  }
+  .quantite-controle {
+    margin: 0;
+    gap: 5px;
+  }
+  .btn-qte {
+    width: 26px;
+    height: 26px;
+    font-size: 1rem;
+  }
+  .sous-total {
+    margin-right: 0;
+    font-size: 0.9rem;
+    white-space: nowrap;
+  }
+  .supprimer {
+    padding: 0 2px;
+  }
 }
